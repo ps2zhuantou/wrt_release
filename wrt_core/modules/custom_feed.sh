@@ -171,7 +171,7 @@ install_custom_feed() {
         luci-app-quickstart luci-app-store luci-app-homeproxy luci-app-mosdns
         luci-app-passwall nikki luci-app-nikki mihomo-meta
         open-app-filter luci-app-oaf lucky luci-app-lucky luci-app-easytier
-        luci-app-emmc-health
+        luci-app-emmc-health luci-theme-aurora luci-app-aurora-config
     )
     local custom_feed_sources=()
     local missing_feed_dirs=()
@@ -224,6 +224,16 @@ install_custom_feed() {
     fi
 
     if ! fix_emmc_health_luci_js_deps "$custom_feed_dir/luci-app-emmc-health"; then
+        rm -rf "$custom_feed_dir"
+        return 1
+    fi
+
+    if ! sync_repo_root_package_to_feed_dir "https://github.com/eamonxg/luci-theme-aurora.git" "" "$custom_feed_dir" "eamonxg/luci-theme-aurora.git" "luci-theme-aurora"; then
+        rm -rf "$custom_feed_dir"
+        return 1
+    fi
+    
+    if ! sync_repo_root_package_to_feed_dir "https://github.com/eamonxg/luci-app-aurora-config.git" "" "$custom_feed_dir" "eamonxg/luci-app-aurora-config" "luci-app-aurora-config"; then
         rm -rf "$custom_feed_dir"
         return 1
     fi
