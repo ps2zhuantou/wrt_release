@@ -16,6 +16,7 @@ on:
           - cmcc_rax3000m_immwrtc
           - gemtek_w1701k_immwrt
           - jdcloud_ax6000_immwrt
+          - jdcloud_ax6000_immwrtc
           - jdcloud_ipq60xx_immwrt
           - jdcloud_ipq60xx_libwrt
           - link_nn6000v2_immwrt
